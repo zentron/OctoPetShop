@@ -6,4 +6,4 @@
   value: 5001
 - op: replace
   path: /spec/replicas
-  value: 5
+  value: #{Web.Replicas}
