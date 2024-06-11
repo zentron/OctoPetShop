@@ -25,15 +25,15 @@ jobs:
 
       - name: Get current date tag
         id: tagdate
-        run: echo "::set-output name=tagdate::$(date +'%Y%m%d')"
-
+        run: |
+            echo "DOCKER_TAGDATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: roberterez/OctopusSamples.OctoPetShop.Database
           tags: |
-            type=raw,value=${{ steps.date.outputs.tagdate }}-{{branch}}
+            type=raw,value=${{env.DOCKER_TAGDATE }}-{{branch}}
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -50,7 +50,7 @@ jobs:
         with:
           images: roberterez/OctopusSamples.OctoPetShop.Infrastructure
           tags: |
-            type=raw,value=${{ steps.date.outputs.tagdate }}-{{branch}}
+            type=raw,value=${{env.DOCKER_TAGDATE }}-{{branch}}
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
