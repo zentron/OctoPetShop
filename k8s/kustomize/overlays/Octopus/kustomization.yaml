@@ -2,11 +2,23 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - ../../base
-
+- namespace.yaml
 
 images:
- - name: productservice
-   newName: roberterez/octopussamples.octopetshop.productservice
+ - name: octopussamples/octopetshop-database
+   newName: roberterez/octopussamples.octopetshop.database
+   newTag: 20240611.033140-master
+
+ - name: octopussamples/octopetshop-web
+   newName: roberterez/octopussamples.octopetshop.web
+   newTag: 20240611.033140-master
+
+ - name: octopussamples/octopetshop-shoppingcartservice
+   newName: octopussamples/octopetshop-shoppingcartservice
+   newTag: 20240611.033140-master
+
+ - name: octopussamples/octopetshop-productservice
+   newName: octopussamples/octopetshop-productservice
    newTag: 20240611.033140-master
 
 patches:
@@ -14,11 +26,3 @@ patches:
       kind: Deployment
       name: octopetshop-web-deployment
     path: octopetshop-web-deployment.yaml
-  - target:
-      kind: Service
-      name: web-loadbalancer
-    path: octopetshop-loadbalancer.yaml
-  - target:
-      kind: Service
-      name: octopetshop-web-cluster-ip-service
-    path: octopetshop-web-cluster-ip-service.yaml
