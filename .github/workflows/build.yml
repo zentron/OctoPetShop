@@ -3,6 +3,13 @@ name: Publish Docker image
 on:
     workflow_dispatch:
 
+    push:
+        paths:
+            - OctopusSamples.OctoPetShop.Database/**
+            - OctopusSamples.OctoPetShop.ProductService/**
+            - OctopusSamples.OctoPetShop.ShoppingCartService/**
+            - OctopusSamples.OctoPetShop.Web/**
+
 jobs:
 
 
