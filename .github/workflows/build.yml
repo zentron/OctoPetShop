@@ -36,7 +36,7 @@ jobs:
           context: ./OctopusSamples.OctoPetShop.Database
           file: ./OctopusSamples.OctoPetShop.Database/dockerfile
           push: true
-          tags: roberterez/OctopusSamples.OctoPetShop.Database:${{env.DOCKER_TAGDATE }}-${{ github.head_ref || github.ref_name }}
+          tags: roberterez/octopussamples.octopetshop.database:${{env.DOCKER_TAGDATE }}-${{ github.head_ref || github.ref_name }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -44,7 +44,7 @@ jobs:
             context: ./OctopusSamples.OctoPetShop.ProductService
             file: ./OctopusSamples.OctoPetShop.ProductService/Dockerfile
             push: true
-            tags: roberterez/OctopusSamples.OctoPetShop.ProductService:${{env.DOCKER_TAGDATE }}-${{ github.head_ref || github.ref_name }}
+            tags: roberterez/octopussamples.octopetshop.productservice:${{env.DOCKER_TAGDATE }}-${{ github.head_ref || github.ref_name }}
 
 
       - name: Build and push Docker image
@@ -53,11 +53,11 @@ jobs:
             context: ./OctopusSamples.OctoPetShop.ShoppingCartService
             file: ./OctopusSamples.OctoPetShop.ShoppingCartService/Dockerfile
             push: true
-            tags: roberterez/OctopusSamples.OctoPetShop.ShoppingCartService:${{env.DOCKER_TAGDATE }}-${{ github.head_ref || github.ref_name }}
+            tags: roberterez/octopussamples.octopetshop.shoppingcartservice:${{env.DOCKER_TAGDATE }}-${{ github.head_ref || github.ref_name }}
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
             context: ./OctopusSamples.OctoPetShop.Web
             file: ./OctopusSamples.OctoPetShop.Web/Dockerfile
             push: true
-            tags: roberterez/OctopusSamples.OctoPetShop.Web:${{env.DOCKER_TAGDATE }}-${{ github.head_ref || github.ref_name }}
+            tags: roberterez/octopussamples.octopetshop.web:${{env.DOCKER_TAGDATE }}-${{ github.head_ref || github.ref_name }}
