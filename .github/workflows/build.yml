@@ -22,22 +22,18 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+
+      - name: Get current date tag
+        id: tagdate
+        run: echo "::set-output name=tagdate::$(date +'%Y%m%d')"
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: roberterez/OctopusSamples.OctoPetShop.Database
           tags: |
-            # minimal (short sha)
-            type=sha
-            # full length sha
-            type=sha,format=long
-            # dynamically set the branch name as a prefix
-            type=sha,prefix={{branch}}-
-            # dynamically set the branch name and sha as a custom tag
-            type=raw,value=mytag-{{branch}}-{{sha}}
-            type=raw,value={{date 'YYYYMMDD.hhmmss'}}
-
+            type=raw,value=${{ steps.date.outputs.tagdate }}-{{branch}}
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -47,7 +43,22 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
       
+      - name: Extract metadata (tags, labels) for Docker
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: roberterez/OctopusSamples.OctoPetShop.Infrastructure
+          tags: |
+            type=raw,value=${{ steps.date.outputs.tagdate }}-{{branch}}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: ./OctopusSamples.OctoPetShop.Infrastructure
+          file: ./OctopusSamples.OctoPetShop.Infrastructure/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
       
       #- name: Generate artifact attestation
       #  uses: actions/attest-build-provenance@v1
