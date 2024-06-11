@@ -5,20 +5,20 @@ resources:
 #- namespace.yaml
 
 images:
- - name: octopussamples/octopetshop-database
-   newName: roberterez/octopussamples.octopetshop.database
+ - name: roberterez/octopetshop-database
+   #newName: roberterez/octopussamples.octopetshop.database
    newTag: 20240611.033140-master
 
- - name: octopussamples/octopetshop-web
-   newName: roberterez/octopussamples.octopetshop.web
+ - name: roberterez/octopetshop-web
+   #newName: roberterez/octopussamples.octopetshop.web
    newTag: 20240611.033140-master
 
- - name: octopussamples/octopetshop-shoppingcartservice
-   newName: roberterez/octopetshop-shoppingcartservice
+ - name: roberterez/octopetshop-shoppingcartservice
+   #newName: roberterez/octopetshop-shoppingcartservice
    newTag: 20240611.033140-master
 
- - name: octopussamples/octopetshop-productservice
-   newName: roberterez/octopetshop-productservice
+ - name: roberterez/octopetshop-productservice
+   #newName: roberterez/octopetshop-productservice
    newTag: 20240611.033140-master
 
 patches:
