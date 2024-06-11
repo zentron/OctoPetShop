@@ -28,12 +28,14 @@ jobs:
         with:
           images: roberterez/OctopusSamples.OctoPetShop.Database
           tags: |
-            # minimal
-            type=schedule
-            # default
-            type=schedule,pattern=nightly
-            # handlebars
-            type=schedule,pattern={{date 'YYYYMMDD'}}
+            # minimal (short sha)
+            type=sha
+            # full length sha
+            type=sha,format=long
+            # dynamically set the branch name as a prefix
+            type=sha,prefix={{branch}}-
+            # dynamically set the branch name and sha as a custom tag
+            type=raw,value=mytag-{{branch}}-{{sha}}
 
       - name: Build and push Docker image
         id: push
