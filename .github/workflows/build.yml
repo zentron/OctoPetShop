@@ -4,6 +4,9 @@ on:
     workflow_dispatch:
 
 jobs:
+
+
+  
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
@@ -26,13 +29,7 @@ jobs:
         run: |
             echo "DOCKER_TAGDATE=$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_ENV
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: roberterez/OctopusSamples.OctoPetShop.Database
-          tags: |
-            type=raw,value=${{env.DOCKER_TAGDATE }}-{{branch}}
+
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -40,53 +37,29 @@ jobs:
           context: ./OctopusSamples.OctoPetShop.Database
           file: ./OctopusSamples.OctoPetShop.Database/dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: roberterez/OctopusSamples.OctoPetShop.Database:${{env.DOCKER_TAGDATE }}-{{branch}}
 
-
-          
-      - name: Extract metadata (tags, labels) for Docker
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: roberterez/OctopusSamples.OctoPetShop.ProductService
-          tags: |
-            type=raw,value=${{env.DOCKER_TAGDATE }}-{{branch}}       
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
             context: ./OctopusSamples.OctoPetShop.ProductService
             file: ./OctopusSamples.OctoPetShop.ProductService/Dockerfile
             push: true
-            tags: ${{ steps.meta.outputs.tags }}
-            labels: ${{ steps.meta.outputs.labels }}            
+            tags: roberterez/OctopusSamples.OctoPetShop.ProductService:${{env.DOCKER_TAGDATE }}-{{branch}}
 
 
-
-      - name: Extract metadata (tags, labels) for Docker
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-            images: roberterez/OctopusSamples.OctoPetShop.ShoppingCartService
-            tags: type=raw,value=${{env.DOCKER_TAGDATE }}-{{branch}}
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
             context: ./OctopusSamples.OctoPetShop.ShoppingCartService
             file: ./OctopusSamples.OctoPetShop.ShoppingCartService/Dockerfile
             push: true
-            tags: ${{ steps.meta.outputs.tags }}
-            labels: ${{ steps.meta.outputs.labels }}
+            tags: roberterez/OctopusSamples.OctoPetShop.ShoppingCartService:${{env.DOCKER_TAGDATE }}-{{branch}}
 
-        
-      - name: Extract metadata (tags, labels) for Docker
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-            images: roberterez/OctopusSamples.OctoPetShop.Web
-            tags: type=raw,value=${{env.DOCKER_TAGDATE }}-{{branch}}
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
             context: ./OctopusSamples.OctoPetShop.Web
             file: ./OctopusSamples.OctoPetShop.Web/Dockerfile
             push: true
-            tags: ${{ steps.meta.outputs.tags }}
-            labels: ${{ steps.meta.outputs.labels }}
+            tags: roberterez/OctopusSamples.OctoPetShop.Web:${{env.DOCKER_TAGDATE }}-{{branch}}
