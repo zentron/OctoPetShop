@@ -27,6 +27,13 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: roberterez/OctopusSamples.OctoPetShop.Database
+          tags: |
+            # minimal
+            type=schedule
+            # default
+            type=schedule,pattern=nightly
+            # handlebars
+            type=schedule,pattern={{date 'YYYYMMDD'}}
 
       - name: Build and push Docker image
         id: push
