@@ -6,16 +6,16 @@ resources:
 
 images:
  - name: roberterez/octopetshop-database
-   newTag: #{Octopus.Action.Package[octopetshop.database].Image}
+   newTag: #{Octopus.Action.Package[octopetshop-database].Image}
 
  - name: roberterez/octopetshop-web
-   newTag: #{Octopus.Action.Package[octopetshop.web].Image}
+   newTag: #{Octopus.Action.Package[octopetshop-web].Image}
 
  - name: roberterez/octopetshop-shoppingcartservice
-   newTag:  #{Octopus.Action.Package[octopetshop.shoppingcartservice].Image}
+   newTag:  #{Octopus.Action.Package[octopetshop-shoppingcartservice].Image}
 
  - name: roberterez/octopetshop-productservice
-   newTag:  #{Octopus.Action.Package[octopetshop.productservice].Image}
+   newTag: #{Octopus.Action.Package[octopetshop-productservice].Image}
 
 patches:
   - target:
