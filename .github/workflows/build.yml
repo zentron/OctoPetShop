@@ -36,6 +36,7 @@ jobs:
             type=sha,prefix={{branch}}-
             # dynamically set the branch name and sha as a custom tag
             type=raw,value=mytag-{{branch}}-{{sha}}
+            type=raw,value={{date 'YYYYMMDD.hhmmss'}}
 
       - name: Build and push Docker image
         id: push
