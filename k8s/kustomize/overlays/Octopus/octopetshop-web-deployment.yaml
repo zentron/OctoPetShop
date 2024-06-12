@@ -5,5 +5,8 @@
   path: /spec/template/spec/containers/0/ports/1/containerPort
   value: 5001
 - op: replace
+  path: /spec/template/spec/containers/0/env/0/value
+  value: "#{Web.TitleColor}"
+- op: replace
   path: /spec/replicas
   value: #{Web.Replicas}
