@@ -16,3 +16,5 @@ patches:
       kind: Service
       name: octopetshop-web-cluster-ip-service
     path: octopetshop-web-cluster-ip-service.yaml
+
+
