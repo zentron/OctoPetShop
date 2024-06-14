@@ -6,5 +6,7 @@ namespace OctopusSamples.OctoPetShop
         public string EnvironmentName { get; set; }
         public string ProductServiceBaseUrl { get; set; }
         public string ShoppingCartServiceBaseUrl { get; set; }
+        public string TitleBarColor { get; set; }
+        public string HelloText { get; set; }
     }
 }

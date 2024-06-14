@@ -2,10 +2,12 @@
     ViewData["Title"] = "Home Page";
 }
 
-@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.Extensions.Options
+@inject IOptions<AppSettings> Settings
 @model List<ProductViewModel> 
 
-<h2>Welcome to the Octo Pet Shop!</h2>
+<h2>@{Settings.Value.HelloText}</h2>
 
 <p>The Octo Pet Shop has a great selection of your favourite pet and pet products. Browse our most popular products below. </p>
 
