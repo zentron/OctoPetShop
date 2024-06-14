@@ -17,6 +17,12 @@ spec:
           image: octopussamples/octopetshop-web
           #image: octopetshop_octopetshop # use these when building locally
           #imagePullPolicy: Never
+
+          env:
+            - name: HelloText
+              value: Hello World!
+            - name: TitleBarColor
+              value: "#ff0000"
           ports:
             - containerPort: 5000
               name: http-port
