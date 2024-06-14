@@ -17,12 +17,6 @@ spec:
           image: octopussamples/octopetshop-web
           #image: octopetshop_octopetshop # use these when building locally
           #imagePullPolicy: Never
-
-          env:
-            - name: HelloText
-              value: Hello World!
-            - name: TitleBarColor
-              value: "#ff0000"
           ports:
             - containerPort: 5000
               name: http-port
@@ -33,3 +27,7 @@ spec:
               value: http://octopetshop-productservice-cluster-ip-service:5011/
             - name: ShoppingCartServiceBaseUrl
               value: http://octopetshop-shoppingcart-cluster-ip-service:5012
+            - name: HelloText
+              value: Hello World!
+            - name: TitleBarColor
+              value: "#ff0000"
