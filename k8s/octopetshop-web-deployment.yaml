@@ -15,8 +15,6 @@ spec:
       containers:
         - name: web
           image: octopussamples/octopetshop-web
-          #image: octopetshop_octopetshop # use these when building locally
-          #imagePullPolicy: Never
           ports:
             - containerPort: 5000
               name: http-port
