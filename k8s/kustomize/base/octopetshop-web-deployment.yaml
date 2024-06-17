@@ -23,6 +23,8 @@ spec:
           env:
             - name: TitleBarColor
               value: orange
+            - name: HelloText
+              value: "Welcome to the Octo Pet Shop Container"
             - name: ProductServiceBaseUrl
               value: http://octopetshop-productservice-cluster-ip-service:5011/
             - name: ShoppingCartServiceBaseUrl
