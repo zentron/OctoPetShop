@@ -1,12 +1,12 @@
 - op: replace
   path: /spec/ports/0/port
-  value: 5030
+  value: #{Web.Port}
 - op: replace
   path: /spec/ports/0/targetPort
-  value: 5030
+  value: #{Web.Port}
 - op: replace
   path: /spec/ports/1/port
-  value: 5031
+  value: 5011
 - op: replace
   path: /spec/ports/1/targetPort
-  value: 5031 
+  value: 5011 
