@@ -22,8 +22,11 @@ patches:
       kind: Deployment
       name: octopetshop-web-deployment
     path: octopetshop-web-deployment.yaml
-    
   - target:
       kind: Service
       name: web-loadbalancer
     path: octopetshop-loadbalancer.yaml
+  - target:
+      kind: Service
+      name: octopetshop-web-cluster-ip-service
+    path: octopetshop-web-cluster-ip-service.yaml
