@@ -1,6 +1,6 @@
-- op: replace
-  path: /spec/template/spec/containers/0/ports/0/containerPort
-  value: #{Web.Port}
+#- op: replace
+#  path: /spec/template/spec/containers/0/ports/0/containerPort
+#  value: #{Web.Port}
 - op: replace
   path: /spec/template/spec/containers/0/env/0/value
   value: "#{Web.TitleColor}"
