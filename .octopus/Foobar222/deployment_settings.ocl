@@ -1,8 +1,0 @@
-connectivity_policy {}
-
-versioning_strategy {
-    donor_package {
-        package = "octopetshop-web"
-        step = "deploy-octopetshop"
-    }
-}
