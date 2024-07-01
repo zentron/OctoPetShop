@@ -1,5 +1,5 @@
 step "deploy-octopetshop" {
-    name = "Deploy OctoPetShop"
+    name = "Deploy OctoPetShopddd"
     properties = {
         Octopus.Action.TargetRoles = "k8s"
     }
