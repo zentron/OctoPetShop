@@ -13,6 +13,7 @@ step "deploy-octopetshop" {
             Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
             Octopus.Action.Kubernetes.ServerSideApply.Enabled = "True"
             Octopus.Action.Kubernetes.ServerSideApply.ForceConflicts = "True"
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptSource = "GitRepository"
             Octopus.Action.SubstituteInFiles.TargetFiles = <<-EOT
                 k8s/kustomize/base/*.yaml
@@ -65,6 +66,17 @@ step "deploy-octopetshop" {
             acquisition_location = "NotAcquired"
             feed = "dockerhub"
             package_id = "roberterez/octopetshop-web"
+            properties = {
+                Extract = "False"
+                Purpose = "DockerImageReference"
+                SelectionMode = "immediate"
+            }
+        }
+
+        packages "nginx" {
+            acquisition_location = "NotAcquired"
+            feed = "dockerhub"
+            package_id = "nginx"
             properties = {
                 Extract = "False"
                 Purpose = "DockerImageReference"
