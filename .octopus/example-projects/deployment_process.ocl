@@ -57,5 +57,16 @@ step "kustomize-deployment" {
                 SelectionMode = "immediate"
             }
         }
+
+        packages "octopetshop-shoppingcartservice" {
+            acquisition_location = "NotAcquired"
+            feed = "docker-hub"
+            package_id = "roberterez/octopetshop-shoppingcartservice"
+            properties = {
+                Extract = "False"
+                Purpose = "DockerImageReference"
+                SelectionMode = "immediate"
+            }
+        }
     }
 }
