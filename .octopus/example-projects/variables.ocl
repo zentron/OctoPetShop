@@ -28,7 +28,7 @@ variable "Web.HelloText" {
 
 variable "Web.Port" {
     value "5011" {
-        environment = ["development"]
+        environment = ["staging"]
     }
 
     value "80" {
