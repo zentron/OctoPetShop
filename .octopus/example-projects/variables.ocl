@@ -18,7 +18,7 @@ variable "StepTimeout" {
 
 variable "Web.HelloText" {
     value "Hello From NonProd!" {
-        environment = ["development"]
+        environment = ["staging"]
     }
 
     value "Hello and welcome to OctoPetShop!" {
@@ -42,13 +42,13 @@ variable "Web.Replicas" {
     }
 
     value "5" {
-        environment = ["development"]
+        environment = ["staging"]
     }
 }
 
 variable "Web.TitleColor" {
     value "red" {
-        environment = ["development"]
+        environment = ["staging"]
     }
 
     value "lightblue" {
