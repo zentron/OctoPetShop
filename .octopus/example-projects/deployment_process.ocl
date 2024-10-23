@@ -19,7 +19,7 @@ step "kustomize-deployment" {
         worker_pool = "hosted-ubuntu"
 
         git_dependencies {
-            default_branch = "main"
+            default_branch = "master"
             git_credential_id = "GitCredentials-21"
             git_credential_type = "Library"
             repository_uri = "https://github.com/zentron/OctoPetShop.git"
