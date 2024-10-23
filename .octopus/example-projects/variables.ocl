@@ -1,0 +1,57 @@
+variable "Namespace" {
+    value "octopetshop-#{Octopus.Environment.Name | ToLower}" {}
+
+    value "octopetshop" {
+        environment = ["production"]
+    }
+}
+
+variable "Project.SQLServer.AcceptEula" {
+    value "Y" {}
+}
+
+variable "StepTimeout" {
+    value "180" {
+        action = ["deploy-octopetshop"]
+    }
+}
+
+variable "Web.HelloText" {
+    value "Hello From NonProd!" {
+        environment = ["development"]
+    }
+
+    value "Hello and welcome to OctoPetShop!" {
+        environment = ["production"]
+    }
+}
+
+variable "Web.Port" {
+    value "5011" {
+        environment = ["development"]
+    }
+
+    value "80" {
+        environment = ["production"]
+    }
+}
+
+variable "Web.Replicas" {
+    value "4" {
+        environment = ["production"]
+    }
+
+    value "5" {
+        environment = ["development"]
+    }
+}
+
+variable "Web.TitleColor" {
+    value "red" {
+        environment = ["development"]
+    }
+
+    value "lightblue" {
+        environment = ["production"]
+    }
+}
