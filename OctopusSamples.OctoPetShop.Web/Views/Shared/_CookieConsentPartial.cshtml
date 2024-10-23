@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http.Features
+﻿@using Microsoft.Extensions.Options;
+@inject IOptions<AppSettings> Settings
 
 @{
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
