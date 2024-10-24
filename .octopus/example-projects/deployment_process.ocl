@@ -75,7 +75,9 @@ step "run-a-kubectl-script" {
         properties = {
             Octopus.Action.KubernetesContainers.Namespace = "#{Namespace}"
             Octopus.Action.Script.ScriptBody = <<-EOT
-                $IPADDRESS = kubectl get service web-loadbalancer --output jsonpath='{.status.loadBalancer.ingress[0].ip}'  
+                kubectl get service web-loadbalancer
+                
+                $IPADDRESS = $(kubectl get service web-loadbalancer --output jsonpath='{.status.loadBalancer.ingress[0].ip}')
                 
                 http_status="000"
                 endpoint_url="http://$IPADDRESS:5011"
