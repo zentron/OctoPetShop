@@ -7,7 +7,7 @@ step "kustomize-deployment" {
     action {
         action_type = "Octopus.Kubernetes.Kustomize"
         properties = {
-            Octopus.Action.GitRepository.Source = "External"
+            Octopus.Action.GitRepository.Source = "Project"
             Octopus.Action.Kubernetes.DeploymentTimeout = "180"
             Octopus.Action.Kubernetes.Kustomize.OverlayPath = "k8s/kustomize/overlays/Octopus"
             Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
@@ -17,13 +17,6 @@ step "kustomize-deployment" {
             Octopus.Action.SubstituteInFiles.TargetFiles = "k8s/kustomize/overlays/Octopus/*.yaml"
         }
         worker_pool = "hosted-ubuntu"
-
-        git_dependencies {
-            default_branch = "master"
-            git_credential_id = "GitCredentials-21"
-            git_credential_type = "Library"
-            repository_uri = "https://github.com/zentron/OctoPetShop.git"
-        }
 
         packages "octopetshop-productservice" {
             acquisition_location = "NotAcquired"
