@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ip_address=$(kubectl get service web-loadbalancer --output jsonpath='{.status.loadBalancer.ingress[0].ip}')
 endpoint_url="http://$ip_address:#{Web.Port}"
 
