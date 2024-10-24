@@ -49,3 +49,9 @@ variable "Web.TitleColor" {
         environment = ["production"]
     }
 }
+
+variable "XXX" {
+    value {
+        process = ["runbook/foo"]
+    }
+}
