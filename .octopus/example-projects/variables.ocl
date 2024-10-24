@@ -28,6 +28,11 @@ variable "Web.Port" {
     value "80" {
         environment = ["production"]
     }
+
+    value "5022" {
+        description = ""
+        environment = ["testing"]
+    }
 }
 
 variable "Web.Replicas" {
@@ -38,6 +43,10 @@ variable "Web.Replicas" {
     value "3" {
         environment = ["staging"]
     }
+
+    value "1" {
+        description = ""
+    }
 }
 
 variable "Web.TitleColor" {
@@ -47,5 +56,9 @@ variable "Web.TitleColor" {
 
     value "lightblue" {
         environment = ["production"]
+    }
+
+    value "green" {
+        description = ""
     }
 }
