@@ -18,6 +18,11 @@ variable "Web.HelloText" {
     value "Hello and welcome to OctoPetShop!" {
         environment = ["production"]
     }
+
+    value "Hello Testing" {
+        description = ""
+        environment = ["testing"]
+    }
 }
 
 variable "Web.Port" {
@@ -27,6 +32,11 @@ variable "Web.Port" {
 
     value "80" {
         environment = ["production"]
+    }
+
+    value "5022" {
+        description = ""
+        environment = ["testing"]
     }
 }
 
@@ -38,6 +48,10 @@ variable "Web.Replicas" {
     value "3" {
         environment = ["staging"]
     }
+
+    value "1" {
+        description = ""
+    }
 }
 
 variable "Web.TitleColor" {
@@ -47,5 +61,9 @@ variable "Web.TitleColor" {
 
     value "lightblue" {
         environment = ["production"]
+    }
+
+    value "green" {
+        description = ""
     }
 }
