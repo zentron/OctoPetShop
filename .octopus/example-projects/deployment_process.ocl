@@ -75,30 +75,21 @@ step "run-a-kubectl-script" {
         properties = {
             Octopus.Action.KubernetesContainers.Namespace = "#{Namespace}"
             Octopus.Action.Script.ScriptBody = <<-EOT
-                kubectl get service web-loadbalancer
+                ip_address = $(kubectl get service web-loadbalancer --output jsonpath='{.status.loadBalancer.ingress[0].ip}')
+                endpoint_url="http://$ip_address:5011"
                 
-                $IPADDRESS = $(kubectl get service web-loadbalancer --output jsonpath='{.status.loadBalancer.ingress[0].ip}')
+                echo "Sending request to $endpoint_url"       
+                http_status=$(curl -s -o /dev/null -w "%{http_code}" $endpoint_url --max-time 5)
+                echo "Received status code $http_status"
                 
-                http_status="000"
-                endpoint_url="http://$IPADDRESS:5011"
-                
-                echo "Pinging $endpoint_url"
-                
-                echo "End point staging URL $endpoint_url"              
-                
-                	http_status=$(curl -s -o /dev/null -w "%{http_code}" $endpoint_url --max-time 5)
-                
-                	echo "Received status code $http_status"
-                
-                	if [ $http_status = "200" ]
-                	then
-                        echo "Successfully pinged health"
-                
-                		exit 0
-                	fi
+                if [ $http_status = "200" ]
+                then
+                    echo "Successfully pinged health"
+                	exit 0
+                fi
                     
                 
-                echo "Failed to pre-heat staging"
+                echo "Failed to test web app"
                 exit 1 
                 EOT
             Octopus.Action.Script.ScriptSource = "Inline"
