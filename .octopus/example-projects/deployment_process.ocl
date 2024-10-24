@@ -112,3 +112,45 @@ step "run-a-script" {
         worker_pool_variable = ""
     }
 }
+
+step "run-a-kubectl-script" {
+    name = "Run a kubectl script"
+    properties = {
+        Octopus.Action.TargetRoles = "k8s"
+    }
+
+    action {
+        action_type = "Octopus.KubernetesRunScript"
+        properties = {
+            Octopus.Action.KubernetesContainers.Namespace = "#{Namespace}"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                $IPADDRESS = kubectl get service web-loadbalancer --output jsonpath='{.status.loadBalancer.ingress[0].ip}'  
+                
+                http_status="000"
+                endpoint_url="http://$IPADDRESS:5011"
+                
+                echo "Pinging $endpoint_url"
+                
+                echo "End point staging URL $endpoint_url"              
+                
+                	http_status=$(curl -s -o /dev/null -w "%{http_code}" $endpoint_url --max-time 5)
+                
+                	echo "Received status code $http_status"
+                
+                	if [ $http_status = "200" ]
+                	then
+                        echo "Successfully pinged health"
+                
+                		exit 0
+                	fi
+                    
+                
+                echo "Failed to pre-heat staging"
+                exit 1 
+                EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "Bash"
+        }
+        worker_pool = "hosted-ubuntu"
+    }
+}
