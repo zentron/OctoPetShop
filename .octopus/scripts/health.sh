@@ -3,7 +3,7 @@
 ip_address=$(kubectl get service web-loadbalancer --output jsonpath='{.status.loadBalancer.ingress[0].ip}')
 endpoint_url="http://$ip_address:#{Web.Port}"
 
-echo "Sending request to $endpoint_url"       
+write_highlight "Sending request to $endpoint_url"       
 http_status=$(curl -s -o /dev/null -w "%{http_code}" $endpoint_url --max-time 5)
 echo "Received status code $http_status"
 
@@ -14,5 +14,5 @@ then
 fi
     
 
-echo "Failed to test web app"
+write_error "Failed to test web app"
 exit 1 
