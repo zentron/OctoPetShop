@@ -83,10 +83,6 @@ step "run-a-script" {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 $IPADDRESS = kubectl get service web-loadbalancer -n octopetshop-staging --output jsonpath='{.status.loadBalancer.ingress[0].ip}'  
-                echo $IPADDRESS
-                
-                curl
-                
                 
                 http_status="000"
                 endpoint_url="http://$IPADDRESS:5011"
