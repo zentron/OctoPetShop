@@ -75,7 +75,7 @@ step "run-a-kubectl-script" {
         properties = {
             Octopus.Action.KubernetesContainers.Namespace = "#{Namespace}"
             Octopus.Action.Script.ScriptBody = <<-EOT
-                ip_address = $(kubectl get service web-loadbalancer --output jsonpath='{.status.loadBalancer.ingress[0].ip}')
+                ip_address=$(kubectl get service web-loadbalancer --output jsonpath='{.status.loadBalancer.ingress[0].ip}')
                 endpoint_url="http://$ip_address:5011"
                 
                 echo "Sending request to $endpoint_url"       
