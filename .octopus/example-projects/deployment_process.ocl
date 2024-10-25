@@ -81,3 +81,20 @@ step "run-a-kubectl-script" {
         worker_pool = "hosted-ubuntu"
     }
 }
+
+step "run-a-kubectl-script2" {
+    name = "Run a kubectl script2"
+    properties = {
+        Octopus.Action.TargetRoles = "k8s"
+    }
+
+    action {
+        action_type = "Octopus.KubernetesRunScript"
+        properties = {
+            Octopus.Action.GitRepository.Source = "Project"
+            Octopus.Action.Script.ScriptFileName = " .octopus/scripts/health.sh"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+    }
+}
