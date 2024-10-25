@@ -3,6 +3,7 @@ step "kustomize-deployment" {
     properties = {
         Octopus.Action.TargetRoles = "k8s"
     }
+
     action {
         action_type = "Octopus.Kubernetes.Kustomize"
         properties = {
@@ -16,6 +17,7 @@ step "kustomize-deployment" {
             Octopus.Action.SubstituteInFiles.TargetFiles = "k8s/kustomize/overlays/Octopus/*.yaml"
         }
         worker_pool = "hosted-ubuntu"
+
         packages "octopetshop-productservice" {
             acquisition_location = "NotAcquired"
             feed = "docker-hub"
@@ -26,6 +28,7 @@ step "kustomize-deployment" {
                 SelectionMode = "immediate"
             }
         }
+
         packages "octopetshop-database" {
             acquisition_location = "NotAcquired"
             feed = "docker-hub"
@@ -36,6 +39,7 @@ step "kustomize-deployment" {
                 SelectionMode = "immediate"
             }
         }
+
         packages "octopetshop-web" {
             acquisition_location = "NotAcquired"
             feed = "docker-hub"
@@ -46,6 +50,7 @@ step "kustomize-deployment" {
                 SelectionMode = "immediate"
             }
         }
+
         packages "octopetshop-shoppingcartservice" {
             acquisition_location = "NotAcquired"
             feed = "docker-hub"
@@ -56,21 +61,5 @@ step "kustomize-deployment" {
                 SelectionMode = "immediate"
             }
         }
-    }
-}
-step "run-a-kubectl-script" {
-    name = "Run a kubectl script"
-    properties = {
-        Octopus.Action.TargetRoles = "k8s"
-    }
-    action {
-        action_type = "Octopus.KubernetesRunScript"
-        properties = {
-            Octopus.Action.GitRepository.Source = "Project"
-            Octopus.Action.KubernetesContainers.Namespace = "#{Namespace}"
-            Octopus.Action.Script.ScriptFileName = ".octopus/scripts/health.sh"
-            Octopus.Action.Script.ScriptSource = "GitRepository"
-        }
-        worker_pool = "hosted-ubuntu"
     }
 }
