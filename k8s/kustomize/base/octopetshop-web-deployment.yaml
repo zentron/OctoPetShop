@@ -29,3 +29,5 @@ spec:
               value: http://octopetshop-productservice-cluster-ip-service:5011/
             - name: ShoppingCartServiceBaseUrl
               value: http://octopetshop-shoppingcart-cluster-ip-service:5012
+            - name: AppVersion
+              value: 0.0.1
