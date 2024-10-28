@@ -10,3 +10,6 @@
 - op: replace
   path: /spec/replicas
   value: #{Web.Replicas}
+- op: replace
+  path: /spec/template/spec/containers/0/env/4/value
+  value: "#{Octopus.Release.Number}"  
