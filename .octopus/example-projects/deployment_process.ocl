@@ -63,3 +63,21 @@ step "kustomize-deployment" {
         }
     }
 }
+
+step "run-health-ping" {
+    name = "Run Health Ping"
+    properties = {
+        Octopus.Action.TargetRoles = "k8s"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "Project"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptFileName = ".octopus/scripts/health.sh"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+        }
+        worker_pool_variable = ""
+    }
+}
